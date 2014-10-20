@@ -1,6 +1,6 @@
 ## VMWare vCloud Director
 
-This package provides the `go-vcd` package which offers
+This package provides the `vcd` package which offers
 an interface to the VMWare VCloud Director API.
 
 It's intentionally designed to make heavy use of built-ins and strings
