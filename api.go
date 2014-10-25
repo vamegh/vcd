@@ -17,14 +17,15 @@ type Client struct {
 } 
 
 func NewClient() (*Client, error) {
-	creds   := os.Getenv("SKYSCAPE_CREDS")
+	creds   := os.Getenv("VCD_CREDS")
+	url     := os.Getenv("VCD_URL")
 	creds64 := base64.StdEncoding.EncodeToString([]byte(creds))
 
 	client := Client{
-		Token: "XXXX",
-		URL:	 "https://api.vcd.portal.skyscapecloud.com",
+		Token:       "XXXX",
+		URL:         url,
 		httpClient:  http.DefaultClient,
-		creds: creds64,
+		creds:       creds64,
 	}
 
 	client.login()
