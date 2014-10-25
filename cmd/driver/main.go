@@ -5,5 +5,6 @@ import (
 )
 
 func main() {
-	vcd.NewClient();
+	v, _ := vcd.NewClient()
+	v.ShowToken()
 }

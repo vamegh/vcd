@@ -42,13 +42,17 @@ func (v *Client) login() error {
 	hReq.Header.Set("Accept", "application/*+xml;version=5.5")
 	hReq.Header.Set("Authorization", fmt.Sprintf("Basic %s", v.creds))
 
-	re, _ := v.httpClient.Do(hReq)
+	re, err := v.httpClient.Do(hReq)
+	if (err != nil) {
+		return err
+	}
 	defer re.Body.Close()
 
 	v.Token = re.Header["X-Vcloud-Authorization"][0]
-	fmt.Println("VCD HTTP STATUS:  ", re.StatusCode)
-	fmt.Println("VCD CREDENTIALS:  ", v.creds)
-	fmt.Println("VCD AUTH TOKEN:   ", v.Token)
 	return nil
+}
+
+func (v *Client) ShowToken() {
+	fmt.Println("VCD Token: ", v.Token)
 }
 
