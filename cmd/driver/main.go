@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	vcd.NewClient("wibble");
+	vcd.NewClient();
 }
