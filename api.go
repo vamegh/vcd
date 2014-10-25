@@ -10,22 +10,22 @@ import (
 )
 
 type Client struct {
-	Token string
-	URL string
+	Token      string
+	URL        string
 	httpClient *http.Client
-	creds string
-} 
+	creds      string
+}
 
 func NewClient() (*Client, error) {
-	creds   := os.Getenv("VCD_CREDS")
-	url     := os.Getenv("VCD_URL")
+	creds := os.Getenv("VCD_CREDS")
+	url := os.Getenv("VCD_URL")
 	creds64 := base64.StdEncoding.EncodeToString([]byte(creds))
 
 	client := Client{
-		Token:       "XXXX",
-		URL:         url,
-		httpClient:  http.DefaultClient,
-		creds:       creds64,
+		Token:      "XXXX",
+		URL:        url,
+		httpClient: http.DefaultClient,
+		creds:      creds64,
 	}
 
 	client.login()
@@ -43,7 +43,7 @@ func (v *Client) login() error {
 	hReq.Header.Set("Authorization", fmt.Sprintf("Basic %s", v.creds))
 
 	re, err := v.httpClient.Do(hReq)
-	if (err != nil) {
+	if err != nil {
 		return err
 	}
 	defer re.Body.Close()
@@ -55,4 +55,3 @@ func (v *Client) login() error {
 func (v *Client) ShowToken() {
 	fmt.Println("VCD Token: ", v.Token)
 }
-
