@@ -5,6 +5,7 @@ import (
 	"flag"
 	"github.com/houst0n/vcd"
 	"os"
+  "fmt"
 )
 
 func main() {
