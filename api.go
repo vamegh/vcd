@@ -17,7 +17,7 @@ type Client struct {
 func NewClient(url string, creds string) (*Client, error) {
 
 	client := Client{
-		Token:      "XXXX",
+		Token:      "FAIL",
 		URL:        url,
 		httpClient: http.DefaultClient,
 		creds:      creds,
@@ -50,5 +50,10 @@ func (v *Client) login() error {
 }
 
 func (v *Client) ShowToken() {
-	fmt.Println("VCD Token: ", v.Token)
+	if v.Token == "FAIL" {
+		fmt.Println("Auth Has Failed")
+		os.Exit(1)
+	} else {
+		fmt.Println("VCD Token: ", v.Token)
+	}
 }
