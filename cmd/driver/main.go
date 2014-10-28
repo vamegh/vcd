@@ -3,9 +3,9 @@ package main
 import (
 	"encoding/base64"
 	"flag"
+	"fmt"
 	"github.com/houst0n/vcd"
 	"os"
-  "fmt"
 )
 
 func main() {
