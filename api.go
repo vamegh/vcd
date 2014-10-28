@@ -1,12 +1,10 @@
 package vcd
 
 import (
-	"encoding/base64"
 	"fmt"
 	"io"
 	"net/http"
 	"net/url"
-	"os"
 )
 
 type Client struct {
@@ -16,16 +14,13 @@ type Client struct {
 	creds      string
 }
 
-func NewClient() (*Client, error) {
-	creds := os.Getenv("VCD_CREDS")
-	url := os.Getenv("VCD_URL")
-	creds64 := base64.StdEncoding.EncodeToString([]byte(creds))
+func NewClient(url string, creds string) (*Client, error) {
 
 	client := Client{
 		Token:      "XXXX",
 		URL:        url,
 		httpClient: http.DefaultClient,
-		creds:      creds64,
+		creds:      creds,
 	}
 
 	client.login()
@@ -47,6 +42,8 @@ func (v *Client) login() error {
 		return err
 	}
 	defer re.Body.Close()
+
+	//fmt.Println("Body: ", re.Body)
 
 	v.Token = re.Header["X-Vcloud-Authorization"][0]
 	return nil
