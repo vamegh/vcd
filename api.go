@@ -1,12 +1,12 @@
 package vcd
 
 import (
-	"encoding/base64"
-	"fmt"
-	"io"
-	"net/http"
-	"net/url"
-	"os"
+  "encoding/base64"
+  "fmt"
+  "io"
+  "net/http"
+  "net/url"
+  "os"
   "flag"
 )
 
